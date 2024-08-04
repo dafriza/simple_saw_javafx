@@ -13,14 +13,14 @@ import javafx.fxml.Initializable;
  *
  * @author mochammad.angkasa
  */
-public class ListKriteriaController implements Initializable {
+public class DashboardController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        // TODO 
+    }
     
 }
