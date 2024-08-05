@@ -1,7 +1,12 @@
+com\bantukerjaanmu\projectkakfarhan\repository\RepositoryKriteria.class
 com\bantukerjaanmu\projectkakfarhan\ListKriteriaController.class
+com\bantukerjaanmu\projectkakfarhan\models\KriteriaModel.class
+com\bantukerjaanmu\projectkakfarhan\repository\RepositoryKriteria$1.class
 com\bantukerjaanmu\projectkakfarhan\connection\MySQL.class
+com\bantukerjaanmu\projectkakfarhan\connection\queryExecuteStatement.class
 module-info.class
+com\bantukerjaanmu\projectkakfarhan\connection\queryExecuteResultSet.class
 com\bantukerjaanmu\projectkakfarhan\CreateKriteriaController.class
 com\bantukerjaanmu\projectkakfarhan\DashboardController.class
+com\bantukerjaanmu\projectkakfarhan\AddKriteriaController.class
 com\bantukerjaanmu\projectkakfarhan\App.class
-com\bantukerjaanmu\projectkakfarhan\KriteriaDetailController.class

@@ -14,14 +14,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bantukerjaanmu.projectkakfarhan.ListKriteriaController">
    <children>
-      <TableView layoutX="24.0" layoutY="123.0" prefHeight="251.0" prefWidth="553.0">
+      <TableView fx:id="kriteriaTable" layoutX="24.0" layoutY="123.0" prefHeight="251.0" prefWidth="553.0">
         <columns>
-          <TableColumn prefWidth="41.0" text="No" />
-          <TableColumn prefWidth="109.0" text="Kriteria" />
-            <TableColumn prefWidth="119.0" text="Keterangan" />
-            <TableColumn prefWidth="74.0" text="Grup" />
-            <TableColumn prefWidth="145.0" text="Tanggal" />
-            <TableColumn prefWidth="63.0" text="Action" />
+          <TableColumn fx:id="colId" prefWidth="41.0" text="No" />
+          <TableColumn fx:id="colKriteria" prefWidth="109.0" text="Kriteria" />
+            <TableColumn fx:id="colKeterangan" prefWidth="119.0" text="Keterangan" />
+            <TableColumn fx:id="colGrup" prefWidth="74.0" text="Grup" />
+            <TableColumn fx:id="colTanggal" prefWidth="145.0" text="Tanggal" />
+            <TableColumn fx:id="colAction" prefWidth="63.0" text="Action" />
         </columns>
       </TableView>
       <GridPane layoutX="24.0" layoutY="15.0" prefHeight="108.0" prefWidth="235.0">

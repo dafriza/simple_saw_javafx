@@ -1,6 +1,8 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
-import com.bantukerjaanmu.projectkakfarhan.connection.MySQL;
+//import com.bantukerjaanmu.projectkakfarhan.connection.MySQL;
+import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteria;
+import org.json.simple.JSONObject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,10 +37,9 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-//        MySQL connectMySQL = new MySQL();
-//        System.out.println("Works!");
-        System.out.println("Connect MySQL");
-//        connectMySQL.mySQLConnect();
+//        ListKriteriaController test = new ListKriteriaController();
+//        test.getAllKriteria();
+//        System.err.println("Works!");
         launch();
     }
 
