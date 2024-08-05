@@ -1,10 +1,11 @@
 package com.bantukerjaanmu.projectkakfarhan;
+
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class DashboardController{
+public class KriteriaDetailController {
     @FXML
-    private void switchToListKritetia() throws IOException {
+    private void switchToListKriteria() throws IOException {
         App.setRoot("ListKriteria");
     }
 }

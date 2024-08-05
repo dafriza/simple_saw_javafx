@@ -1,4 +1,7 @@
-com\bantukerjaanmu\projectkakfarhan\DashboardController.class
 com\bantukerjaanmu\projectkakfarhan\ListKriteriaController.class
+com\bantukerjaanmu\projectkakfarhan\connection\MySQL.class
 module-info.class
+com\bantukerjaanmu\projectkakfarhan\CreateKriteriaController.class
+com\bantukerjaanmu\projectkakfarhan\DashboardController.class
 com\bantukerjaanmu\projectkakfarhan\App.class
+com\bantukerjaanmu\projectkakfarhan\KriteriaDetailController.class

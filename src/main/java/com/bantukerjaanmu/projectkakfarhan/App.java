@@ -1,5 +1,6 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
+import com.bantukerjaanmu.projectkakfarhan.connection.MySQL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +26,7 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        scene.getWindow().sizeToScene();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -33,7 +35,10 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("Works!");
+//        MySQL connectMySQL = new MySQL();
+//        System.out.println("Works!");
+        System.out.println("Connect MySQL");
+//        connectMySQL.mySQLConnect();
         launch();
     }
 

@@ -1,26 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.bantukerjaanmu.projectkakfarhan;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import java.io.IOException;
+import javafx.fxml.FXML;
+public class ListKriteriaController {
 
-/**
- * FXML Controller class
- *
- * @author mochammad.angkasa
- */
-public class ListKriteriaController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML
+    private void switchToDashboard() throws IOException {
+        App.setRoot("Dashboard");
     }
-
+    
+    @FXML
+    private void switchToKriteriaDetail() throws IOException {
+        App.setRoot("KriteriaDetail");
+    }
 }
