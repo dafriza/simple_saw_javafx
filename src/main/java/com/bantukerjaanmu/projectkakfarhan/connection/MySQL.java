@@ -33,12 +33,12 @@ public class MySQL {
         }
 
     }
-    public void queryManualResultSet(Connection conn, Statement stmt, queryExecuteResultSet qe) {
+    public void queryManualStatementEdit(Connection conn, Statement stmt, Integer id, queryExecuteUpdate qe) {
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
-            qe.executeResultSet(conn, stmt);
+            qe.executeStatement(conn, stmt, id);
 //            String sql = "SELECT * FROM kriteria";
 //            String sql = query;
 //            rs = stmt.executeQuery(sql);
@@ -46,8 +46,8 @@ public class MySQL {
 //                System.out.println("ID Buku: " + rs.getInt("id"));
 //                System.out.println("Judul: " + rs.getObject("data_kriteria"));
 //            }
-//            stmt.close();
-//            conn.close();
+            stmt.close();
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

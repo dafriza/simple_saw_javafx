@@ -1,8 +1,6 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
 //import com.bantukerjaanmu.projectkakfarhan.connection.MySQL;
-import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteria;
-import org.json.simple.JSONObject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,5 +1,6 @@
 package com.bantukerjaanmu.projectkakfarhan.repository;
 
+import com.bantukerjaanmu.projectkakfarhan.AddKriteriaController;
 import com.bantukerjaanmu.projectkakfarhan.connection.MySQL;
 import com.bantukerjaanmu.projectkakfarhan.connection.queryExecuteResultSet;
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import com.bantukerjaanmu.projectkakfarhan.connection.queryExecuteStatement;
 import java.sql.DriverManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class RepositoryKriteria {
 
@@ -42,8 +45,11 @@ public class RepositoryKriteria {
                 public Statement executeStatement(Connection conn, Statement stmt) {
                     try {
                         Object dataKriteria = kriteria.getData_kriteria();
-                        String sql = "insert into kriteria(data_kriteria)values('%s')";
-                        sql = String.format(sql, dataKriteria);
+                        ZoneId z = ZoneId.of("Asia/Jakarta");
+                        LocalDate created_at = LocalDate.now(z);
+                        LocalDate updated_at = LocalDate.now(z);
+                        String sql = "insert into kriteria(data_kriteria,created_at,updated_at)values('%s','%s','%s')";
+                        sql = String.format(sql, dataKriteria, created_at, updated_at);
 //                        stmt = conn.createStatement();
                         stmt.execute(sql);
                         return stmt;

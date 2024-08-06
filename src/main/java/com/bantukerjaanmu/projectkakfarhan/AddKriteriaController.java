@@ -14,31 +14,31 @@ public class AddKriteriaController {
     public TextField c1kriteria;
 
     @FXML
-    public TextField c1keterangan;
+    public TextField c1kategori;
 
     @FXML
     public TextField c2kriteria;
 
     @FXML
-    public TextField c2keterangan;
+    public TextField c2kategori;
 
     @FXML
     public TextField c3kriteria;
 
     @FXML
-    public TextField c3keterangan;
+    public TextField c3kategori;
 
     @FXML
     public TextField c4kriteria;
 
     @FXML
-    public TextField c4keterangan;
+    public TextField c4kategori;
 
     @FXML
     public TextField c5kriteria;
 
     @FXML
-    public TextField c5keterangan;
+    public TextField c5kategori;
 
     @FXML
     public TextField groupField;
@@ -47,7 +47,7 @@ public class AddKriteriaController {
     public Button saveButton;
 
     @FXML
-    private void switchToListKriteria() throws IOException {
+    public void switchToListKriteria() throws IOException {
         App.setRoot("ListKriteria");
     }
 
@@ -62,23 +62,24 @@ public class AddKriteriaController {
             JSONObject kriteria5 = new JSONObject();
 
             kriteria1.put("kriteria", c1kriteria.getText());
-            kriteria1.put("keterangan", c1keterangan.getText());
+            kriteria1.put("kategori", c1kategori.getText());
             kriteria2.put("kriteria", c2kriteria.getText());
-            kriteria2.put("keterangan", c2keterangan.getText());
+            kriteria2.put("kategori", c2kategori.getText());
             kriteria3.put("kriteria", c3kriteria.getText());
-            kriteria3.put("keterangan", c3keterangan.getText());
+            kriteria3.put("kategori", c3kategori.getText());
             kriteria4.put("kriteria", c4kriteria.getText());
-            kriteria4.put("keterangan", c4keterangan.getText());
+            kriteria4.put("kategori", c4kategori.getText());
             kriteria5.put("kriteria", c5kriteria.getText());
-            kriteria5.put("keterangan", c5keterangan.getText());
-            
+            kriteria5.put("kategori", c5kategori.getText());
+
             kriteriaArray.add(kriteria1);
             kriteriaArray.add(kriteria2);
             kriteriaArray.add(kriteria3);
             kriteriaArray.add(kriteria4);
             kriteriaArray.add(kriteria5);
-            
-            mainObject.put("data",kriteriaArray);
+
+            JSONArray realData = checkIfNull(kriteriaArray);
+            mainObject.put("data", realData);
             mainObject.put("group", groupField.getText());
             KriteriaModel model = new KriteriaModel(mainObject);
             RepositoryKriteria repo = new RepositoryKriteria();
@@ -86,5 +87,19 @@ public class AddKriteriaController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private JSONArray checkIfNull(JSONArray data) {
+        int increment = 1;
+        JSONArray realData = new JSONArray();
+        for (Object object : data) {
+            JSONObject item = (JSONObject) object;
+            if (!item.get("kategori").toString().isEmpty()) {
+                realData.add(object);
+            }
+        }
+//        System.out.println(realData);
+        return realData;
+//        return null;
     }
 }

@@ -14,14 +14,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bantukerjaanmu.projectkakfarhan.ListKriteriaController">
    <children>
-      <TableView fx:id="kriteriaTable" layoutX="24.0" layoutY="123.0" prefHeight="251.0" prefWidth="553.0">
+      <TableView fx:id="kriteriaTable" layoutX="24.0" layoutY="123.0" onMouseClicked="#clickRow" prefHeight="251.0" prefWidth="553.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="41.0" text="No" />
           <TableColumn fx:id="colKriteria" prefWidth="109.0" text="Kriteria" />
-            <TableColumn fx:id="colKeterangan" prefWidth="119.0" text="Keterangan" />
-            <TableColumn fx:id="colGrup" prefWidth="74.0" text="Grup" />
-            <TableColumn fx:id="colTanggal" prefWidth="145.0" text="Tanggal" />
-            <TableColumn fx:id="colAction" prefWidth="63.0" text="Action" />
+            <TableColumn fx:id="colKeterangan" prefWidth="151.0" text="Keterangan" />
+            <TableColumn fx:id="colGrup" prefWidth="110.0" text="Grup" />
+            <TableColumn fx:id="colTanggal" prefWidth="141.0" text="Tanggal" />
         </columns>
       </TableView>
       <GridPane layoutX="24.0" layoutY="15.0" prefHeight="108.0" prefWidth="235.0">
@@ -41,7 +40,7 @@
             </Label>
             <HBox alignment="BOTTOM_LEFT" prefHeight="43.0" prefWidth="235.0" GridPane.rowIndex="1">
                <children>
-                  <Button id="newDecision" fx:id="kriteriaDetailButton" mnemonicParsing="false" onAction="#switchToKriteriaDetail" text="New Kriteria" />
+                  <Button id="newDecision" fx:id="kriteriaDetailButton" mnemonicParsing="false" onAction="#switchToAddKriteria" text="New Kriteria" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
@@ -53,5 +52,7 @@
          </children>
       </GridPane>
       <Button fx:id="dashboardButton" layoutX="503.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToDashboard" text="Dashboard" />
+      <Button fx:id="deleteButton" layoutX="438.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Delete" />
+      <Button fx:id="editButton" layoutX="373.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToKriteriaDetail" prefHeight="25.0" prefWidth="55.0" text="Edit" />
    </children>
 </AnchorPane>
