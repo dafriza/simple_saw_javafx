@@ -52,7 +52,8 @@
          </children>
       </GridPane>
       <Button fx:id="dashboardButton" layoutX="503.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToDashboard" text="Dashboard" />
-      <Button fx:id="deleteButton" layoutX="438.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Delete" />
-      <Button fx:id="editButton" layoutX="373.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToKriteriaDetail" prefHeight="25.0" prefWidth="55.0" text="Edit" />
+      <Button fx:id="deleteButton" layoutX="438.0" layoutY="88.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="55.0" text="Delete" />
+      <Button fx:id="productTypeButton" layoutX="249.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToKriteriaDetail" prefHeight="25.0" prefWidth="115.0" text="Add Product Type" />
+      <Button fx:id="editButton" layoutX="373.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToEditKriteria" prefHeight="25.0" prefWidth="55.0" text="Edit" />
    </children>
 </AnchorPane>

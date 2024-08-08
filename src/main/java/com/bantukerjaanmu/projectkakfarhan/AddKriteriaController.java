@@ -1,5 +1,6 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
+import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -14,31 +15,31 @@ public class AddKriteriaController {
     public TextField c1kriteria;
 
     @FXML
-    public TextField c1kategori;
+    public TextField c1keterangan;
 
     @FXML
     public TextField c2kriteria;
 
     @FXML
-    public TextField c2kategori;
+    public TextField c2keterangan;
 
     @FXML
     public TextField c3kriteria;
 
     @FXML
-    public TextField c3kategori;
+    public TextField c3keterangan;
 
     @FXML
     public TextField c4kriteria;
 
     @FXML
-    public TextField c4kategori;
+    public TextField c4keterangan;
 
     @FXML
     public TextField c5kriteria;
 
     @FXML
-    public TextField c5kategori;
+    public TextField c5keterangan;
 
     @FXML
     public TextField groupField;
@@ -62,15 +63,19 @@ public class AddKriteriaController {
             JSONObject kriteria5 = new JSONObject();
 
             kriteria1.put("kriteria", c1kriteria.getText());
-            kriteria1.put("kategori", c1kategori.getText());
+            kriteria1.put("keterangan", c1keterangan.getText());
+
             kriteria2.put("kriteria", c2kriteria.getText());
-            kriteria2.put("kategori", c2kategori.getText());
+            kriteria2.put("keterangan", c2keterangan.getText());
+
             kriteria3.put("kriteria", c3kriteria.getText());
-            kriteria3.put("kategori", c3kategori.getText());
+            kriteria3.put("keterangan", c3keterangan.getText());
+
             kriteria4.put("kriteria", c4kriteria.getText());
-            kriteria4.put("kategori", c4kategori.getText());
+            kriteria4.put("keterangan", c4keterangan.getText());
+
             kriteria5.put("kriteria", c5kriteria.getText());
-            kriteria5.put("kategori", c5kategori.getText());
+            kriteria5.put("keterangan", c5keterangan.getText());
 
             kriteriaArray.add(kriteria1);
             kriteriaArray.add(kriteria2);
@@ -90,11 +95,10 @@ public class AddKriteriaController {
     }
 
     private JSONArray checkIfNull(JSONArray data) {
-        int increment = 1;
         JSONArray realData = new JSONArray();
         for (Object object : data) {
             JSONObject item = (JSONObject) object;
-            if (!item.get("kategori").toString().isEmpty()) {
+            if (!item.get("keterangan").toString().isEmpty()) {
                 realData.add(object);
             }
         }

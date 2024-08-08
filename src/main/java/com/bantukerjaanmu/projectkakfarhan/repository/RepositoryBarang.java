@@ -1,20 +1,18 @@
 package com.bantukerjaanmu.projectkakfarhan.repository;
 
 import com.bantukerjaanmu.projectkakfarhan.connection.MySQL;
-import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
+import com.bantukerjaanmu.projectkakfarhan.connection.queryExecuteStatement;
+import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.bantukerjaanmu.projectkakfarhan.connection.queryExecuteStatement;
-import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
-import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-public class RepositoryKriteria {
+public class RepositoryBarang {
 
     // Menyiapkan parameter JDBC untuk koneksi ke database
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -39,54 +37,23 @@ public class RepositoryKriteria {
         return conn;
     }
 
-    public void save(KriteriaModel kriteria) {
+    public void save(BarangModel barang) {
         try {
             connect.queryManualStatement(conn, stmt, new queryExecuteStatement() {
                 @Override
                 public Statement executeStatement(Connection conn, Statement stmt) {
                     try {
-                        Object kriteriaRaw = kriteria.getData_kriteria();
-                        JSONObject kriteriaObject = (JSONObject) kriteriaRaw;
-//                        System.out.println("JSONObject = " + kriteriaObject.get("data"));
+                        JSONArray dataBarang = barang.getDataBarang();
                         ZoneId z = ZoneId.of("Asia/Jakarta");
                         LocalDate created_at = LocalDate.now(z);
                         LocalDate updated_at = LocalDate.now(z);
-                        JSONArray kriteriaData = (JSONArray) kriteriaObject.get("data");
-                        for (Object kriteriaRawObject : kriteriaData) {
-                            JSONObject kriteria = (JSONObject) kriteriaRawObject;
-                            String sql = "insert into kriteria(`name`,`keterangan`,`group`,`created_at`,`updated_at`)values('%s','%s','%s','%s','%s')";
-                            sql = String.format(sql, kriteria.get("kriteria"), kriteria.get("keterangan"), (String) kriteriaObject.get("group"), created_at, updated_at);
-                            stmt = conn.createStatement();
-                            stmt.execute(sql);
+                        for (int i = 0; i < dataBarang.size(); i++) {
+                            String sql = "INSERT INTO barang (name, `group`, created_at, updated_at) values ('%s', '%s', '%s', '%s')";
+                            sql = String.format(sql, (String) dataBarang.get(i), (String) barang.getGroup(), created_at, updated_at);
+                            System.out.println("sql command = " + sql);
+                            stmt.executeUpdate(sql);
                         }
                         return stmt;
-//                        return null;
-//                    } catch (SQLException e) {
-                    } catch (Exception e) {
-                        e.printStackTrace();
-//                        Logger.getLogger(RepositoryKriteria.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    return null;
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void update(KriteriaModel kriteria) {
-        try {
-            connect.queryManualStatement(conn, stmt, new queryExecuteStatement() {
-                @Override
-                public Statement executeStatement(Connection conn, Statement stmt) {
-                    try {
-                        ZoneId z = ZoneId.of("Asia/Jakarta");
-                        LocalDate updated_at = LocalDate.now(z);
-                        String sql = "UPDATE kriteria SET `name`='%s',`keterangan`='%s', `group`='%s', `updated_at`='%s' WHERE `id`=%d";
-                        sql = String.format(sql, (String) kriteria.getKriteria(), (String) kriteria.getKeterangan(), (String) kriteria.getGroup(), updated_at, kriteria.getId());
-                        System.out.println("sql command = " + sql);
-                        stmt.execute(sql);
-                        return stmt;
                     } catch (SQLException e) {
 //                    } catch (Exception e) {
                         e.printStackTrace();
@@ -98,10 +65,9 @@ public class RepositoryKriteria {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //    }
     }
 
-    public void delete(KriteriaModel kriteria) {
+    public void update(BarangModel barang) {
         try {
             connect.queryManualStatement(conn, stmt, new queryExecuteStatement() {
                 @Override
@@ -109,7 +75,8 @@ public class RepositoryKriteria {
                     try {
                         ZoneId z = ZoneId.of("Asia/Jakarta");
                         LocalDate updated_at = LocalDate.now(z);
-                        String sql = String.format("DELETE FROM kriteria WHERE id=%d", kriteria.getId());
+                        String sql = "UPDATE barang SET `name`='%s', `group`='%s', `updated_at`='%s' WHERE `id`=%d";
+                        sql = String.format(sql, (String) barang.getName(), (String) barang.getGroup(), updated_at, barang.getId());
                         System.out.println("sql command = " + sql);
                         stmt.execute(sql);
                         return stmt;
@@ -125,18 +92,44 @@ public class RepositoryKriteria {
             e.printStackTrace();
         }
     }
-//    public void index() {
-//        try {
-//            Class.forName(JDBC_DRIVER);
-//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-//            stmt = conn.createStatement();
-//            String sql = "select * from kriteria";
-//            rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                int idBuku = rs.getInt("id");
-//                System.out.println(idBuku);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+    public void delete(BarangModel barang) {
+        try {
+            connect.queryManualStatement(conn, stmt, new queryExecuteStatement() {
+                @Override
+                public Statement executeStatement(Connection conn, Statement stmt) {
+                    try {
+                        ZoneId z = ZoneId.of("Asia/Jakarta");
+                        LocalDate updated_at = LocalDate.now(z);
+                        String sql = String.format("DELETE FROM barang WHERE id=%d", barang.getId());
+                        System.out.println("sql command = " + sql);
+                        stmt.execute(sql);
+                        return stmt;
+                    } catch (SQLException e) {
+//                    } catch (Exception e) {
+                        e.printStackTrace();
+//                        Logger.getLogger(RepositoryKriteria.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void index() {
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String sql = "select * from kriteria";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idBuku = rs.getInt("id");
+                System.out.println(idBuku);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

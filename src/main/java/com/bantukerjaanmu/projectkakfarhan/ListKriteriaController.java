@@ -1,6 +1,8 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
+import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
+import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryBarang;
 import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteria;
 import java.io.IOException;
 import java.net.URL;
@@ -10,22 +12,17 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 
 public class ListKriteriaController implements Initializable {
 
@@ -33,6 +30,7 @@ public class ListKriteriaController implements Initializable {
     ResultSet rs;
     Connection conn;
     Statement stmt;
+    RepositoryKriteria repo;
 
     @FXML
     TableView<KriteriaModel> kriteriaTable;
@@ -53,10 +51,10 @@ public class ListKriteriaController implements Initializable {
     TableColumn<KriteriaModel, String> colTanggal;
 
     @FXML
-    TableColumn colAction;
+    Button editButton;
 
     @FXML
-    Button editButton;
+    Button productTypeButton;
 
     @FXML
     Button deleteButton;
@@ -64,7 +62,7 @@ public class ListKriteriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         getAllKriteria();
-        editButton.setDisable(true);
+        productTypeButton.setDisable(true);
         deleteButton.setDisable(true);
     }
 
@@ -101,7 +99,31 @@ public class ListKriteriaController implements Initializable {
         } catch (IOException e) {
             System.err.println(String.format("Error: %s", e.getMessage()));
         }
+    }
 
+    @FXML
+    private void switchToEditKriteria() throws IOException {
+//        KriteriaDetailController detail = new KriteriaDetailController(clickRow());
+//        clickRow();
+//        App.setRoot("KriteriaDetail");
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "EditKriteria.fxml"
+                    )
+            );
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setScene(
+                    new Scene(loader.load())
+            );
+            EditKriteriaController controller = loader.getController();
+            controller.initData(this.kriteria, stage, this);
+            loader.setController(controller);
+            stage.show();
+//        return stage;
+        } catch (IOException e) {
+            System.err.println(String.format("Error: %s", e.getMessage()));
+        }
     }
 
     @FXML
@@ -125,20 +147,14 @@ public class ListKriteriaController implements Initializable {
             String sql = "select * from kriteria";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                Object kriteriaParse = JSONValue.parse(rs.getString("data_kriteria"));
-                JSONObject kriteriaMain = (JSONObject) kriteriaParse;
-                JSONArray kriteriaList = (JSONArray) kriteriaMain.get("data");
-                int increment = rs.getInt("id");
-                for (Object kriteriaItems : kriteriaList) {
-                    JSONObject item = (JSONObject) kriteriaItems;
-//                    System.out.println((String)item.get("kategori"));
-                    kriteria = new KriteriaModel(increment, (String) item.get("kriteria"), (String) item.get("keterangan"), (String) kriteriaMain.get("group"), rs.getString("created_at")
-                    );
-                    kriteriaData.add(kriteria);
-                    increment++;
-                }
+                kriteria = new KriteriaModel(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("keterangan"),
+                        rs.getString("group"),
+                        rs.getString("updated_at")
+                );
+                kriteriaData.add(kriteria);
             }
-//            System.out.println(kriteriaData);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,8 +166,16 @@ public class ListKriteriaController implements Initializable {
         KriteriaModel kriteria = kriteriaTable.getSelectionModel().getSelectedItem();
         kriteria = new KriteriaModel(kriteria.getId(), kriteria.getKriteria(), kriteria.getKeterangan(), kriteria.getGroup(), kriteria.getCreated_at());
         this.kriteria = kriteria;
-        editButton.setDisable(false);
+        productTypeButton.setDisable(false);
         deleteButton.setDisable(false);
 //        System.out.println(kriteria.getKriteria());
+    }
+
+    public void delete(ActionEvent event) {
+        kriteria = kriteriaTable.getSelectionModel().getSelectedItem();
+        kriteria = new KriteriaModel(kriteria.getId(), kriteria.getKriteria(), kriteria.getKeterangan(), kriteria.getGroup(), kriteria.getCreated_at());
+        repo = new RepositoryKriteria();
+        repo.delete(kriteria);
+        this.getAllKriteria();
     }
 }

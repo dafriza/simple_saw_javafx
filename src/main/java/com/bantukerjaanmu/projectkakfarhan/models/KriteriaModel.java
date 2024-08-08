@@ -10,12 +10,12 @@ public class KriteriaModel {
     private String keterangan;
     private String group;
 
-    public KriteriaModel(Integer id, String kriteria, String keterangan, String group, String created_at) {
+    public KriteriaModel(Integer id, String kriteria, String keterangan, String group, String updated_at) {
         this.id = id;
         this.kriteria = kriteria;
         this.keterangan = keterangan;
         this.group = group;
-        this.created_at = created_at;
+        this.created_at = updated_at;
     }
 
     public KriteriaModel(Object data_kriteria) {

@@ -7,4 +7,8 @@ public class DashboardController{
     private void switchToListKritetia() throws IOException {
         App.setRoot("ListKriteria");
     }
+    @FXML
+    private void switchToDashboardBarang() throws IOException {
+        App.setRoot("DashboardBarang");
+    }
 }

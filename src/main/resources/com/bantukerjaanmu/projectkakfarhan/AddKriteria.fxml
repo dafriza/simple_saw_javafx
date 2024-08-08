@@ -33,23 +33,23 @@
         </rowConstraints>
          <children>
             <Label text="Kriteria" GridPane.columnIndex="1" />
-            <Label text="kategori" GridPane.columnIndex="2" />
+            <Label text="keterangan" GridPane.columnIndex="2" />
             <TextField fx:id="c1kriteria" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="c1kategori" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="c1keterangan" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="c2kriteria" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="No" />
-            <TextField fx:id="c2kategori" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="c2keterangan" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="1." GridPane.rowIndex="1" />
             <Label text="2." GridPane.rowIndex="2" />
             <Label text="3." GridPane.rowIndex="3" />
             <Label text="4." GridPane.rowIndex="4" />
             <Label text="5." GridPane.rowIndex="5" />
             <TextField fx:id="c3kriteria" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="c3kategori" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="c3keterangan" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="c4kriteria" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="c4kategori" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="c4keterangan" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <TextField fx:id="c5kriteria" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="c5kategori" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="c5keterangan" GridPane.columnIndex="2" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <HBox alignment="TOP_RIGHT" layoutX="86.0" layoutY="354.0" prefHeight="25.0" prefWidth="184.0" spacing="20.0">

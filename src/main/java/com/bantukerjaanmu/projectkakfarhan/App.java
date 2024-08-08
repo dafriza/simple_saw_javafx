@@ -25,6 +25,8 @@ public class App extends Application {
     }
 
     static void setRoot(String fxml) throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle(fxml);
         scene.setRoot(loadFXML(fxml));
         scene.getWindow().sizeToScene();
     }
