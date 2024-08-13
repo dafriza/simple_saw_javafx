@@ -1,8 +1,6 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
-import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
-import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryBarang;
 import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteria;
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +43,13 @@ public class ListKriteriaController implements Initializable {
     TableColumn<KriteriaModel, String> colKeterangan;
 
     @FXML
-    TableColumn<KriteriaModel, String> colGrup;
+    TableColumn<KriteriaModel, Float> colBobot;
+
+    @FXML
+    TableColumn<KriteriaModel, String> colGroup;
+
+    @FXML
+    TableColumn<KriteriaModel, String> colType;
 
     @FXML
     TableColumn<KriteriaModel, String> colTanggal;
@@ -59,10 +63,17 @@ public class ListKriteriaController implements Initializable {
     @FXML
     Button deleteButton;
 
+    @FXML
+    Button addValueButton;
+
+    @FXML
+    Button calculateButton;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         getAllKriteria();
-        productTypeButton.setDisable(true);
+        addValueButton.setDisable(true);
+        editButton.setDisable(true);
         deleteButton.setDisable(true);
     }
 
@@ -74,6 +85,11 @@ public class ListKriteriaController implements Initializable {
     @FXML
     private void switchToAddKriteria() throws IOException {
         App.setRoot("AddKriteria");
+    }
+
+    @FXML
+    private void switchToProductType() throws IOException {
+        App.setRoot("ProductType");
     }
 
     @FXML
@@ -91,8 +107,9 @@ public class ListKriteriaController implements Initializable {
             stage.setScene(
                     new Scene(loader.load())
             );
+            stage.setTitle("Kriteria Detail");
             KriteriaDetailController controller = loader.getController();
-            controller.initData(this.kriteria);
+            controller.initData(this.kriteria, stage, this);
             loader.setController(controller);
             stage.show();
 //        return stage;
@@ -116,8 +133,32 @@ public class ListKriteriaController implements Initializable {
             stage.setScene(
                     new Scene(loader.load())
             );
+            stage.setTitle("Edit Kriteria");
             EditKriteriaController controller = loader.getController();
             controller.initData(this.kriteria, stage, this);
+            loader.setController(controller);
+            stage.show();
+//        return stage;
+        } catch (IOException e) {
+            System.err.println(String.format("Error: %s", e.getMessage()));
+        }
+    }
+
+    @FXML
+    private void switchToCalculate(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "ChooseKriteriaValue.fxml"
+                    )
+            );
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setScene(
+                    new Scene(loader.load())
+            );
+            stage.setTitle("Choose Kriteria Value");
+            ChooseKriteriaValueController controller = loader.getController();
+            controller.initData(stage);
             loader.setController(controller);
             stage.show();
 //        return stage;
@@ -132,7 +173,9 @@ public class ListKriteriaController implements Initializable {
         colId.setCellValueFactory(new PropertyValueFactory<KriteriaModel, Integer>("id"));
         colKriteria.setCellValueFactory(new PropertyValueFactory<KriteriaModel, String>("kriteria"));
         colKeterangan.setCellValueFactory(new PropertyValueFactory<KriteriaModel, String>("keterangan"));
-        colGrup.setCellValueFactory(new PropertyValueFactory<KriteriaModel, String>("group"));
+        colBobot.setCellValueFactory(new PropertyValueFactory<KriteriaModel, Float>("bobot"));
+        colGroup.setCellValueFactory(new PropertyValueFactory<KriteriaModel, String>("group"));
+        colType.setCellValueFactory(new PropertyValueFactory<KriteriaModel, String>("type"));
         colTanggal.setCellValueFactory(new PropertyValueFactory<KriteriaModel, String>("created_at"));
         kriteriaTable.setItems(listKriteria);
     }
@@ -150,7 +193,9 @@ public class ListKriteriaController implements Initializable {
                 kriteria = new KriteriaModel(rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("keterangan"),
+                        rs.getFloat("bobot"),
                         rs.getString("group"),
+                        rs.getString("type"),
                         rs.getString("updated_at")
                 );
                 kriteriaData.add(kriteria);
@@ -164,16 +209,21 @@ public class ListKriteriaController implements Initializable {
     @FXML
     public void clickRow() {
         KriteriaModel kriteria = kriteriaTable.getSelectionModel().getSelectedItem();
-        kriteria = new KriteriaModel(kriteria.getId(), kriteria.getKriteria(), kriteria.getKeterangan(), kriteria.getGroup(), kriteria.getCreated_at());
+        kriteria = new KriteriaModel(kriteria.getId(), kriteria.getKriteria(), kriteria.getKeterangan(), kriteria.getBobot(), kriteria.getGroup(), kriteria.getType(), kriteria.getCreated_at());
         this.kriteria = kriteria;
-        productTypeButton.setDisable(false);
+        addValueButton.setDisable(false);
+        editButton.setDisable(false);
         deleteButton.setDisable(false);
 //        System.out.println(kriteria.getKriteria());
     }
 
+    public void calculate(ActionEvent event) {
+
+    }
+
     public void delete(ActionEvent event) {
         kriteria = kriteriaTable.getSelectionModel().getSelectedItem();
-        kriteria = new KriteriaModel(kriteria.getId(), kriteria.getKriteria(), kriteria.getKeterangan(), kriteria.getGroup(), kriteria.getCreated_at());
+        kriteria = new KriteriaModel(kriteria.getId(), kriteria.getKriteria(), kriteria.getKeterangan(), kriteria.getBobot(), kriteria.getGroup(), kriteria.getType(), kriteria.getCreated_at());
         repo = new RepositoryKriteria();
         repo.delete(kriteria);
         this.getAllKriteria();

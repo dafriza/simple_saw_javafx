@@ -16,30 +16,60 @@ public class AddKriteriaController {
 
     @FXML
     public TextField c1keterangan;
+    
+    @FXML
+    public TextField c1type;
+
+    @FXML
+    public TextField c1bobot;
 
     @FXML
     public TextField c2kriteria;
 
     @FXML
     public TextField c2keterangan;
+    
+    @FXML
+    public TextField c2type;
+
+    @FXML
+    public TextField c2bobot;
 
     @FXML
     public TextField c3kriteria;
 
     @FXML
     public TextField c3keterangan;
+    
+    @FXML
+    public TextField c3type;
+
+    @FXML
+    public TextField c3bobot;
 
     @FXML
     public TextField c4kriteria;
 
     @FXML
     public TextField c4keterangan;
+    
+    @FXML
+    public TextField c4type;
+
+    @FXML
+    public TextField c4bobot;
 
     @FXML
     public TextField c5kriteria;
 
     @FXML
     public TextField c5keterangan;
+    
+    @FXML
+    public TextField c5type;
+
+    @FXML
+    public TextField c5bobot;
 
     @FXML
     public TextField groupField;
@@ -64,18 +94,28 @@ public class AddKriteriaController {
 
             kriteria1.put("kriteria", c1kriteria.getText());
             kriteria1.put("keterangan", c1keterangan.getText());
+            kriteria1.put("type", c1type.getText());
+            kriteria1.put("bobot", c1bobot.getText());
 
             kriteria2.put("kriteria", c2kriteria.getText());
             kriteria2.put("keterangan", c2keterangan.getText());
+            kriteria2.put("type", c2type.getText());
+            kriteria2.put("bobot", c2bobot.getText());
 
             kriteria3.put("kriteria", c3kriteria.getText());
             kriteria3.put("keterangan", c3keterangan.getText());
+            kriteria3.put("type", c3type.getText());
+            kriteria3.put("bobot", c3bobot.getText());
 
             kriteria4.put("kriteria", c4kriteria.getText());
             kriteria4.put("keterangan", c4keterangan.getText());
+            kriteria4.put("type", c4type.getText());
+            kriteria4.put("bobot", c4bobot.getText());
 
             kriteria5.put("kriteria", c5kriteria.getText());
             kriteria5.put("keterangan", c5keterangan.getText());
+            kriteria5.put("type", c5type.getText());
+            kriteria5.put("bobot", c5bobot.getText());
 
             kriteriaArray.add(kriteria1);
             kriteriaArray.add(kriteria2);

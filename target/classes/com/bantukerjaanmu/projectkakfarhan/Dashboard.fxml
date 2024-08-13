@@ -28,7 +28,7 @@
          <children>
             <Button id="newDecision" fx:id="newDecisionButton" mnemonicParsing="false" onAction="#switchToListKritetia" text="New Decision" />
             <Button id="newDecision" fx:id="newProductButton" mnemonicParsing="false" onAction="#switchToDashboardBarang" text="New Product" />
-            <Button id="newDecision" fx:id="newTypeProduct" mnemonicParsing="false" text="New Type Product" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" text="Logout" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="75.0" prefHeight="45.0" prefWidth="338.0" spacing="10.0">

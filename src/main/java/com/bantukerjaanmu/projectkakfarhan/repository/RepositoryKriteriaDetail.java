@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -38,16 +40,21 @@ public class RepositoryKriteriaDetail {
                 @Override
                 public Statement executeStatement(Connection conn, Statement stmt, Integer id) {
                     try {
-                        System.out.println("Id masuk = "+id);
-                        Object dataKriteria = kriteria.getDataKriteria();
+//                        System.out.println("Id masuk = "+id);
+                        JSONObject rawKriteria = kriteria.getRawKriteria();
                         ZoneId z = ZoneId.of("Asia/Jakarta");
                         LocalDate created_at = LocalDate.now(z);
                         LocalDate updated_at = LocalDate.now(z);
-                        Integer idTable = id;
-                        String sql = "insert into bobot_kriteria(data_bobot, kriteria_id, created_at, updated_at)values('%s','%s','%s','%s')";
-                        sql = String.format(sql, dataKriteria, idTable, created_at, updated_at);
-//                        stmt = conn.createStatement();
-                        stmt.execute(sql);
+//                        Integer idTable = id;
+                        Integer idTable = kriteria.getId();
+//                        String sql = "insert into bobot_kriteria(data_bobot, kriteria_id, created_at, updated_at)values('%s','%s','%s','%s')";
+                        for (Object objectKriteria : (JSONArray) rawKriteria.get("data")) {
+                            JSONObject kriteria = (JSONObject) objectKriteria;
+                            String sql = "insert into bobot_kriteria(`jenis_kriteria`, `kategori`, `nilai`, `kriteria_id`, `created_at`, `updated_at`)values('%s','%s','%s','%s','%s','%s')";
+                            sql = String.format(sql, kriteria.get("jenis_kriteria"), kriteria.get("kategori"), kriteria.get("nilai"), idTable, created_at, updated_at);
+                            stmt = conn.createStatement();
+                            stmt.execute(sql);
+                        }
                         return stmt;
                     } catch (SQLException e) {
 //                    } catch (Exception e) {

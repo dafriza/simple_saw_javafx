@@ -8,13 +8,17 @@ public class KriteriaModel {
     private String updated_at;
     private String kriteria;
     private String keterangan;
+    private Float bobot;
     private String group;
+    private String type;
 
-    public KriteriaModel(Integer id, String kriteria, String keterangan, String group, String updated_at) {
+    public KriteriaModel(Integer id, String kriteria, String keterangan, Float bobot, String group, String type, String updated_at) {
         this.id = id;
         this.kriteria = kriteria;
         this.keterangan = keterangan;
+        this.bobot = bobot;
         this.group = group;
+        this.type = type;
         this.created_at = updated_at;
     }
 
@@ -119,6 +123,34 @@ public class KriteriaModel {
      */
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    /**
+     * @return the bobot
+     */
+    public Float getBobot() {
+        return bobot;
+    }
+
+    /**
+     * @param bobot the bobot to set
+     */
+    public void setBobot(Float bobot) {
+        this.bobot = bobot;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

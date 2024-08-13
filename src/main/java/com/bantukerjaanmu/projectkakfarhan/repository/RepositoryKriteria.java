@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.bantukerjaanmu.projectkakfarhan.connection.queryExecuteStatement;
-import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
 import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -54,8 +53,9 @@ public class RepositoryKriteria {
                         JSONArray kriteriaData = (JSONArray) kriteriaObject.get("data");
                         for (Object kriteriaRawObject : kriteriaData) {
                             JSONObject kriteria = (JSONObject) kriteriaRawObject;
-                            String sql = "insert into kriteria(`name`,`keterangan`,`group`,`created_at`,`updated_at`)values('%s','%s','%s','%s','%s')";
-                            sql = String.format(sql, kriteria.get("kriteria"), kriteria.get("keterangan"), (String) kriteriaObject.get("group"), created_at, updated_at);
+                            String sql = "insert into kriteria(`name`,`keterangan`,`type`,`bobot`,`group`,`created_at`,`updated_at`)values('%s','%s','%s',%f,'%s','%s','%s')";
+                            sql = String.format(sql, kriteria.get("kriteria"), kriteria.get("keterangan"), kriteria.get("type"), Float.valueOf((String) kriteria.get("bobot")), (String) kriteriaObject.get("group"), created_at, updated_at);
+                            System.out.println("SQL = " + sql);
                             stmt = conn.createStatement();
                             stmt.execute(sql);
                         }
@@ -82,8 +82,8 @@ public class RepositoryKriteria {
                     try {
                         ZoneId z = ZoneId.of("Asia/Jakarta");
                         LocalDate updated_at = LocalDate.now(z);
-                        String sql = "UPDATE kriteria SET `name`='%s',`keterangan`='%s', `group`='%s', `updated_at`='%s' WHERE `id`=%d";
-                        sql = String.format(sql, (String) kriteria.getKriteria(), (String) kriteria.getKeterangan(), (String) kriteria.getGroup(), updated_at, kriteria.getId());
+                        String sql = "UPDATE kriteria SET `name`='%s',`keterangan`='%s', `type`='%s', `bobot`='%f', `group`='%s', `updated_at`='%s' WHERE `id`=%d";
+                        sql = String.format(sql, (String) kriteria.getKriteria(), (String) kriteria.getKeterangan(), kriteria.getType(), kriteria.getBobot(), kriteria.getGroup(), updated_at, kriteria.getId());
                         System.out.println("sql command = " + sql);
                         stmt.execute(sql);
                         return stmt;

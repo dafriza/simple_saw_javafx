@@ -93,6 +93,7 @@ public class DashboardBarangController implements Initializable {
             stage.setScene(
                     new Scene(loader.load())
             );
+            stage.setTitle("Edit Product");
             EditProductController controller = loader.getController();
             controller.initData(this.barang, stage, this);
             loader.setController(controller);

@@ -1,8 +1,6 @@
 package com.bantukerjaanmu.projectkakfarhan;
 
-import com.bantukerjaanmu.projectkakfarhan.models.BarangModel;
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
-import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryBarang;
 import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteria;
 import java.net.URL;
 import java.time.LocalDate;
@@ -29,7 +27,13 @@ public class EditKriteriaController implements Initializable {
     TextField keteranganField;
 
     @FXML
+    TextField bobotField;
+
+    @FXML
     TextField groupField;
+
+    @FXML
+    TextField typeField;
 
     @FXML
     Button updateButton;
@@ -42,7 +46,9 @@ public class EditKriteriaController implements Initializable {
 //            System.out.println(this.kriteria);
             this.kriteriaField.setText(this.kriteria.getKriteria());
             this.keteranganField.setText(this.kriteria.getKeterangan());
+            this.bobotField.setText(String.valueOf(this.kriteria.getBobot()));
             this.groupField.setText(this.kriteria.getGroup());
+            this.typeField.setText(this.kriteria.getType());
         });
     }
 
@@ -56,7 +62,7 @@ public class EditKriteriaController implements Initializable {
         try {
             ZoneId z = ZoneId.of("Asia/Jakarta");
             LocalDate updated_at = LocalDate.now(z);
-            KriteriaModel model = new KriteriaModel(this.kriteria.getId(), this.kriteriaField.getText(), this.keteranganField.getText(), this.groupField.getText(), String.valueOf(updated_at));
+            KriteriaModel model = new KriteriaModel(this.kriteria.getId(), this.kriteriaField.getText(), this.keteranganField.getText(), Float.valueOf(this.bobotField.getText()), this.groupField.getText(), this.typeField.getText(), String.valueOf(updated_at));
             RepositoryKriteria repo = new RepositoryKriteria();
             repo.update(model);
             controller.getAllKriteria();

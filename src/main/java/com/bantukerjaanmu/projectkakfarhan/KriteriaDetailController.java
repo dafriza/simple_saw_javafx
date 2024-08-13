@@ -2,24 +2,24 @@ package com.bantukerjaanmu.projectkakfarhan;
 
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaDetailModel;
 import com.bantukerjaanmu.projectkakfarhan.models.KriteriaModel;
-import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteria;
 import com.bantukerjaanmu.projectkakfarhan.repository.RepositoryKriteriaDetail;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class KriteriaDetailController implements Initializable {
 
     private KriteriaModel kriteria;
+    private ListKriteriaController controller;
+    private Stage stage;
 
     @FXML
     TextField groupField;
@@ -83,16 +83,18 @@ public class KriteriaDetailController implements Initializable {
 //        this.kriteria = kriteria;
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         Platform.runLater(() -> {
-            System.out.println("Works!");
-            System.out.println(this.kriteria);
+//            System.out.println("Works!");
+//            System.out.println(this.kriteria);
             this.groupField.setText(this.kriteria.getGroup());
             this.spekProduk.setText(this.kriteria.getKeterangan());
         });
     }
 
-    void initData(KriteriaModel kriteria) {
+    void initData(KriteriaModel kriteria, Stage stage, ListKriteriaController controller) {
 //    customerName.setText(customer.getName());
         this.kriteria = kriteria;
+        this.stage = stage;
+        this.controller = controller;
     }
 
     @FXML
@@ -110,23 +112,23 @@ public class KriteriaDetailController implements Initializable {
             JSONObject kriteria4 = new JSONObject();
             JSONObject kriteria5 = new JSONObject();
 
-            kriteria1.put("skala_produk", spekProduk1.getText());
+            kriteria1.put("jenis_kriteria", spekProduk1.getText());
             kriteria1.put("kategori", kategori1.getText());
             kriteria1.put("nilai", nilai1.getText());
 
-            kriteria2.put("skala_produk", spekProduk2.getText());
+            kriteria2.put("jenis_kriteria", spekProduk2.getText());
             kriteria2.put("kategori", kategori2.getText());
             kriteria2.put("nilai", nilai2.getText());
 
-            kriteria3.put("skala_produk", spekProduk3.getText());
+            kriteria3.put("jenis_kriteria", spekProduk3.getText());
             kriteria3.put("kategori", kategori3.getText());
             kriteria3.put("nilai", nilai3.getText());
 
-            kriteria4.put("skala_produk", spekProduk4.getText());
+            kriteria4.put("jenis_kriteria", spekProduk4.getText());
             kriteria4.put("kategori", kategori4.getText());
             kriteria4.put("nilai", nilai4.getText());
 
-            kriteria5.put("skala_produk", spekProduk5.getText());
+            kriteria5.put("jenis_kriteria", spekProduk5.getText());
             kriteria5.put("kategori", kategori5.getText());
             kriteria5.put("nilai", nilai5.getText());
 
@@ -139,10 +141,12 @@ public class KriteriaDetailController implements Initializable {
             JSONArray realData = checkIfNull(kriteriaArray);
             mainObject.put("data", realData);
             mainObject.put("group", groupField.getText());
-            ZoneId timeZone = ZoneId.of("Asia/Jakarta");
-            KriteriaDetailModel model = new KriteriaDetailModel(this.kriteria.getId(), mainObject, LocalDate.now(timeZone));
+            KriteriaDetailModel model = new KriteriaDetailModel(this.kriteria.getId(), mainObject);
+//            KriteriaDetailModel model = new KriteriaDetailModel(this.kriteria.getId(), mainObject, LocalDate.now(timeZone));
             RepositoryKriteriaDetail repo = new RepositoryKriteriaDetail();
             repo.save(model, this.kriteria.getId());
+            this.stage.close();
+            this.controller.getAllKriteria();
         } catch (Exception e) {
             e.printStackTrace();
         }
