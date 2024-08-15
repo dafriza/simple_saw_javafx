@@ -205,60 +205,77 @@ public class CalculateProductController implements Initializable {
             cbC5Third.getValue(),
             cbC5Fourth.getValue(),
             cbC5Fifth.getValue()};
+//        Arrays.sort(firstColumn);
+//        Arrays.sort(secondColumn);
+//        Arrays.sort(thirdColumn);
+//        Arrays.sort(fourthColumn);
+//        Arrays.sort(fifthColumn);
+//        int dividerFirst = firstColumn[firstColumn.length - 1];
+        int dividerFirst = maxValue(firstColumn);
+//        int dividerSecond = secondColumn[0];
+        int dividerSecond = minValue(secondColumn);
+//        int dividerThird = thirdColumn[thirdColumn.length - 1];
+        int dividerThird = maxValue(thirdColumn);
+//        int dividerFourth = fourthColumn[fourthColumn.length - 1];
+        int dividerFourth = maxValue(fourthColumn);
+//        int dividerFifth = fifthColumn[0];
+        int dividerFifth = minValue(fifthColumn);
 
-        Arrays.sort(firstColumn);
-        Arrays.sort(secondColumn);
-        Arrays.sort(thirdColumn);
-        Arrays.sort(fourthColumn);
-        Arrays.sort(fifthColumn);
+        double firstCalculateC1 = (double) cbC1First.getValue() / (double) dividerFirst;
+        double secondCalculateC1 = (double) cbC1Second.getValue() / (double) dividerFirst;
+        double thirdCalculateC1 = (double) cbC1Third.getValue() / (double) dividerFirst;
+        double fourthCalculateC1 = (double) cbC1Fourth.getValue() / (double) dividerFirst;
+        double fifthCalculateC1 = (double) cbC1Fifth.getValue() / (double) dividerFirst;
+//        double firstRow[] = {firstCalculateC1, firstCalculateC1, thirdCalculateC1, fourthCalculateC1, fifthCalculateC1};
 
-        int dividerFirst = firstColumn[firstColumn.length - 1];
-        int dividerSecond = secondColumn[0];
-        int dividerThird = thirdColumn[thirdColumn.length - 1];
-        int dividerFourth = fourthColumn[fourthColumn.length - 1];
-        int dividerFifth = fifthColumn[0];
+        double firstCalculateC2 = (double) dividerSecond / (double) cbC2First.getValue();
+        double secondCalculateC2 = (double) dividerSecond / (double) cbC2Second.getValue();
+        double thirdCalculateC2 = (double) dividerSecond / (double) cbC2Third.getValue();
+        double fourthCalculateC2 = (double) dividerSecond / (double) cbC2Fourth.getValue();
+        double fifthCalculateC2 = (double) dividerSecond / (double) cbC2Fifth.getValue();
+//        double secondRow[] = {firstCalculateC2, secondCalculateC2, thirdCalculateC2, fourthCalculateC2, fifthCalculateC2};
 
-        float firstCalculateC1 = cbC1First.getValue() / dividerFirst;
-        float secondCalculateC1 = cbC1Second.getValue() / dividerFirst;
-        float thirdCalculateC1 = cbC1Third.getValue() / dividerFirst;
-        float fourthCalculateC1 = cbC1Fourth.getValue() / dividerFirst;
-        float fifthCalculateC1 = cbC1Fifth.getValue() / dividerFirst;
-        float firstRow[] = {firstCalculateC1, secondCalculateC1, thirdCalculateC1, fourthCalculateC1, fifthCalculateC1};
+        double firstCalculateC3 = (double) cbC3First.getValue() / (double) dividerThird;
+        double secondCalculateC3 = (double) cbC3Second.getValue() / (double) dividerThird;
+        double thirdCalculateC3 = (double) cbC3Third.getValue() / (double) dividerThird;
+        double fourthCalculateC3 = (double) cbC3Fourth.getValue() / (double) dividerThird;
+        double fifthCalculateC3 = (double) cbC3Fifth.getValue() / (double) dividerThird;
+//        double thirdRow[] = {firstCalculateC3, secondCalculateC3, thirdCalculateC3, fourthCalculateC3, fifthCalculateC3};
 
-        float firstCalculateC2 = cbC2First.getValue() / dividerSecond;
-        float secondCalculateC2 = cbC2Second.getValue() / dividerSecond;
-        float thirdCalculateC2 = cbC2Third.getValue() / dividerSecond;
-        float fourthCalculateC2 = cbC2Fourth.getValue() / dividerSecond;
-        float fifthCalculateC2 = cbC2Fifth.getValue() / dividerSecond;
-        float secondRow[] = {firstCalculateC2, secondCalculateC2, thirdCalculateC2, fourthCalculateC2, fifthCalculateC2};
+        double firstCalculateC4 = (double) cbC4First.getValue() / (double) dividerFourth;
+        double secondCalculateC4 = (double) cbC4Second.getValue() / (double) dividerFourth;
+        double thirdCalculateC4 = (double) cbC4Third.getValue() / (double) dividerFourth;
+        double fourthCalculateC4 = (double) cbC4Fourth.getValue() / (double) dividerFourth;
+        double fifthCalculateC4 = (double) cbC4Fifth.getValue() / (double) dividerFourth;
+//        double fourthRow[] = {firstCalculateC4, secondCalculateC4, thirdCalculateC4, fourthCalculateC4, fifthCalculateC4};
 
-        float firstCalculateC3 = cbC3First.getValue() / dividerThird;
-        float secondCalculateC3 = cbC3Second.getValue() / dividerThird;
-        float thirdCalculateC3 = cbC3Third.getValue() / dividerThird;
-        float fourthCalculateC3 = cbC3Fourth.getValue() / dividerThird;
-        float fifthCalculateC3 = cbC3Fifth.getValue() / dividerThird;
-        float thirdRow[] = {firstCalculateC3, secondCalculateC3, thirdCalculateC3, fourthCalculateC3, fifthCalculateC3};
+        double firstCalculateC5 = (double) dividerFifth / (double) cbC5First.getValue();
+        double secondCalculateC5 = (double) dividerFifth / (double) cbC5Second.getValue();
+        double thirdCalculateC5 = (double) dividerFifth / (double) cbC5Third.getValue();
+        double fourthCalculateC5 = (double) dividerFifth / (double) cbC5Fourth.getValue();
+        double fifthCalculateC5 = (double) dividerFifth / (double) cbC5Fifth.getValue();
+//        double fifthRow[] = {firstCalculateC5, secondCalculateC5, thirdCalculateC5, fourthCalculateC5, fifthCalculateC5};
 
-        float firstCalculateC4 = cbC4First.getValue() / dividerFourth;
-        float secondCalculateC4 = cbC4Second.getValue() / dividerFourth;
-        float thirdCalculateC4 = cbC4Third.getValue() / dividerFourth;
-        float fourthCalculateC4 = cbC4Fourth.getValue() / dividerFourth;
-        float fifthCalculateC4 = cbC4Fifth.getValue() / dividerFourth;
-        float fourthRow[] = {firstCalculateC4, secondCalculateC4, thirdCalculateC4, fourthCalculateC4, fifthCalculateC4};
+        double firstRow[] = {firstCalculateC1, firstCalculateC2, firstCalculateC3, firstCalculateC4, firstCalculateC5};
+        double secondRow[] = {secondCalculateC1, secondCalculateC2, secondCalculateC3, secondCalculateC4, secondCalculateC5};
+        double thirdRow[] = {thirdCalculateC1, thirdCalculateC2, thirdCalculateC3, thirdCalculateC4, thirdCalculateC5};
+        double fourthRow[] = {fourthCalculateC1, fourthCalculateC2, fourthCalculateC3, fourthCalculateC4, fourthCalculateC5};
+        double fifthRow[] = {fifthCalculateC1, fifthCalculateC2, fifthCalculateC3, fifthCalculateC4, fifthCalculateC5};
 
-        float firstCalculateC5 = cbC5First.getValue() / dividerFifth;
-        float secondCalculateC5 = cbC5Second.getValue() / dividerFifth;
-        float thirdCalculateC5 = cbC5Third.getValue() / dividerFifth;
-        float fourthCalculateC5 = cbC5Fourth.getValue() / dividerFifth;
-        float fifthCalculateC5 = cbC5Fifth.getValue() / dividerFifth;
-        float fifthRow[] = {firstCalculateC5, secondCalculateC5, thirdCalculateC5, fourthCalculateC5, fifthCalculateC5};
-
-        float resultFirst = calculateBobot(firstRow);
-        float resultSecond = calculateBobot(secondRow);
-        float resultThird = calculateBobot(thirdRow);
-        float resultFourth = calculateBobot(fourthRow);
-        float resultFifth = calculateBobot(fifthRow);
-        float resultArray[] = {resultFirst, resultSecond, resultThird, resultFourth, resultFifth};
+//        for (double d : firstRow) {
+//            System.out.println(d + " ");
+//        }
+//        for (Object object : bobotKriteria) {
+//            System.out.println("bobot + " + object);
+//        }
+//        System.out.println("result first = "+ firstRow);
+        double resultFirst = calculateBobot(firstRow);
+//        System.out.println("result first = " + resultFirst);
+        double resultSecond = calculateBobot(secondRow);
+        double resultThird = calculateBobot(thirdRow);
+        double resultFourth = calculateBobot(fourthRow);
+        double resultFifth = calculateBobot(fifthRow);
+        double resultArray[] = {resultFirst, resultSecond, resultThird, resultFourth, resultFifth};
         saveDataPenelitian(barangList, resultArray);
     }
 
@@ -318,19 +335,19 @@ public class CalculateProductController implements Initializable {
 //            objData = new JSONObject();
 //            while (rs.next()) {
             rs.next();
-            bobotKriteria.add(rs.getFloat("bobot"));
+            bobotKriteria.add(rs.getDouble("bobot"));
             titleFirst.setText(rs.getString("name"));
             rs.next();
-            bobotKriteria.add(rs.getFloat("bobot"));
+            bobotKriteria.add(rs.getDouble("bobot"));
             titleSecond.setText(rs.getString("name"));
             rs.next();
-            bobotKriteria.add(rs.getFloat("bobot"));
+            bobotKriteria.add(rs.getDouble("bobot"));
             titleThird.setText(rs.getString("name"));
             rs.next();
-            bobotKriteria.add(rs.getFloat("bobot"));
+            bobotKriteria.add(rs.getDouble("bobot"));
             titleFourth.setText(rs.getString("name"));
             rs.next();
-            bobotKriteria.add(rs.getFloat("bobot"));
+            bobotKriteria.add(rs.getDouble("bobot"));
             titleFifth.setText(rs.getString("name"));
 //            }
 //            System.out.println(objData);
@@ -436,17 +453,37 @@ public class CalculateProductController implements Initializable {
         }
     }
 
-    public float calculateBobot(float dataProduct[]) {
-        float totalProduct = 0;
+    public double calculateBobot(double dataProduct[]) {
+        double totalProduct = 0;
         for (int i = 0; i < dataProduct.length; i++) {
-            totalProduct += dataProduct[i] * ((Float) bobotKriteria.get(i));
+            totalProduct = ((double) dataProduct[i] * ((double) bobotKriteria.get(i))) + totalProduct;
+//            System.out.println("data normalisasi = " + dataProduct[i]);
+//            System.out.println("data kriteria bobot = " + bobotKriteria.get(i));
+//            System.out.println("perkalian data = " + (double) dataProduct[i] * ((double) bobotKriteria.get(i)));
+//            System.out.println("result " + i + ", hasil = " + totalProduct);
         }
         return totalProduct;
     }
 
-    public void saveDataPenelitian(int[] idBarangList, float[] dataResult) {
+    public void saveDataPenelitian(int[] idBarangList, double[] dataResult) {
         DataPenelitianModel model = new DataPenelitianModel(idBarangList, dataResult);
         RepositoryDataPenelitian repo = new RepositoryDataPenelitian();
         repo.save(model);
+    }
+
+    public int maxValue(int[] dataKriteria) {
+        int maxValue = Integer.MIN_VALUE;
+        for (int i = 0; i < dataKriteria.length; i++) {
+            maxValue = Math.max(maxValue, dataKriteria[i]);
+        }
+        return maxValue;
+    }
+
+    public int minValue(int[] dataKriteria) {
+        int minValue = Integer.MAX_VALUE;
+        for (int i = 0; i < dataKriteria.length; i++) {
+            minValue = Math.min(minValue, dataKriteria[i]);
+        }
+        return minValue;
     }
 }

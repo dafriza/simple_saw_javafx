@@ -37,7 +37,6 @@ com\bantukerjaanmu\projectkakfarhan\ListKriteriaController.class
 com\bantukerjaanmu\projectkakfarhan\repository\RepositoryProductType$1.class
 com\bantukerjaanmu\projectkakfarhan\repository\RepositoryBarang$3.class
 com\bantukerjaanmu\projectkakfarhan\repository\RepositoryKriteriaDetail.class
-com\bantukerjaanmu\projectkakfarhan\SawKriteriaModel.class
 com\bantukerjaanmu\projectkakfarhan\models\KriteriaModel.class
 com\bantukerjaanmu\projectkakfarhan\repository\RepositoryDataPenelitian$1.class
 com\bantukerjaanmu\projectkakfarhan\repository\RepositoryKriteria$1.class

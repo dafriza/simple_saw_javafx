@@ -10,10 +10,10 @@ package com.bantukerjaanmu.projectkakfarhan.models;
  */
 public class DataPenelitianModel {
 
-    private float[] dataResultPenelitian;
+    private double[] dataResultPenelitian;
     private int[] idDataBarang;
 
-    public DataPenelitianModel(int[] idDataBarang, float[] dataResultPenelitian) {
+    public DataPenelitianModel(int[] idDataBarang, double[] dataResultPenelitian) {
         this.idDataBarang = idDataBarang;
         this.dataResultPenelitian = dataResultPenelitian;
     }
@@ -21,14 +21,14 @@ public class DataPenelitianModel {
     /**
      * @return the dataResultPenelitian
      */
-    public float[] getDataResultPenelitian() {
+    public double[] getDataResultPenelitian() {
         return dataResultPenelitian;
     }
 
     /**
      * @param dataResultPenelitian the dataResultPenelitian to set
      */
-    public void setDataResultPenelitian(float[] dataResultPenelitian) {
+    public void setDataResultPenelitian(double[] dataResultPenelitian) {
         this.dataResultPenelitian = dataResultPenelitian;
     }
 
